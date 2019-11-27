@@ -1,12 +1,26 @@
 import React from "react";
-import {UserContext} from "./index";
+import {UserContext,TitleContext} from "./index";
 
 class ComponentF extends React.Component{
   render(){
     return (
      <UserContext.Consumer>
      {
-       user => <div>{user}</div>
+       user => {
+         return (
+           <TitleContext.Consumer>
+           {
+             title => {
+               return (
+                 <div>
+                 {title} - {user}
+                 </div>
+               )
+             }
+           }
+           </TitleContext.Consumer>
+         )
+       }
      }
      </UserContext.Consumer>
     )
